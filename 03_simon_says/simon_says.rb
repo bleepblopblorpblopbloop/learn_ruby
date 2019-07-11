@@ -29,6 +29,13 @@ def titleize(x)
 end
 
 def titleize(x)
-    nocaps = ["and", "the", "or"]
-    x.split(" ").map {|word| nocaps.include?(word) ? word : word.capitalize }.join(" ")
-end
+    words = x.split.map do |word|
+      if %w(the and over).include?(word)
+        word
+      else
+        word.capitalize
+      end
+    end
+    words.first.capitalize!
+    words.join(" ")
+  end
